@@ -24,7 +24,6 @@
 // - `flow(f) === f`
 // - `pipe(x, f) === f(x)`
 
-import { unimplemented } from '../utils';
 import { flow, pipe } from 'fp-ts/lib/function';
 
 export const isEven = (value: number) => value % 2 === 0;
