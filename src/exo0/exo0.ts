@@ -65,7 +65,14 @@ export const ifThenElse =
 // Using `pipe` and `ifThenElse`, write the function that computes the next step in the Collatz
 // sequence.
 
-export const next: (value: number) => number = unimplemented;
+export const next: (value: number) => number = (value: number) =>
+  pipe(
+    isEven(value),
+    ifThenElse(
+      () => value / 2,
+      () => value * 3 + 1,
+    ),
+  );
 
 // Using only `flow` and `next`, write the function that for any given number
 // a_n from the Collatz sequence, returns the number a_n+3 (ie. the number
