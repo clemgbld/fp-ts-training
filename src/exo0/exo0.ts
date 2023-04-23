@@ -25,6 +25,7 @@
 // - `pipe(x, f) === f(x)`
 
 import { unimplemented } from '../utils';
+import { flow, pipe } from 'fp-ts/lib/function';
 
 export const isEven = (value: number) => value % 2 === 0;
 
@@ -42,7 +43,8 @@ export const not = (value: boolean) => !value;
 // `pipe` or `flow`), write the function `isOdd` that checks if a number is
 // odd.
 
-export const isOddP: (value: number) => boolean = unimplemented;
+export const isOddP: (value: number) => boolean = (num: number) =>
+  pipe(num, isEven, not);
 
 export const isOddF: (value: number) => boolean = unimplemented;
 
