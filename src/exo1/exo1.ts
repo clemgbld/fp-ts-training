@@ -7,7 +7,7 @@
 import { Either } from 'fp-ts/Either';
 import { Option } from 'fp-ts/Option';
 import { TaskEither } from 'fp-ts/TaskEither';
-import { option } from 'fp-ts';
+import { option, either } from 'fp-ts';
 import { unimplemented, sleep, unimplementedAsync } from '../utils';
 
 export const divide = (a: number, b: number): number => {
@@ -61,7 +61,8 @@ export const DivisionByZero = 'Error: Division by zero' as const;
 export const safeDivideWithError: (
   a: number,
   b: number,
-) => Either<DivisionByZeroError, number> = unimplemented;
+) => Either<DivisionByZeroError, number> = (a: number, b: number) =>
+  either.fromOption(() => DivisionByZero)(safeDivide(a, b));
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                TASKEITHER                                 //

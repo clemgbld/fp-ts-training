@@ -32,11 +32,11 @@ describe('exo1', () => {
   });
 
   describe('safeDivideWithError', () => {
-    it.skip('should return the result of dividing two numbers', () => {
+    it('should return the result of dividing two numbers', () => {
       expect(safeDivideWithError(25, 5)).toStrictEqual(either.right(5));
     });
 
-    it.skip('should return either.left(DivisionByZero) if the denominator is zero', () => {
+    it('should return either.left(DivisionByZero) if the denominator is zero', () => {
       expect(safeDivideWithError(25, 0)).toStrictEqual(
         either.left(DivisionByZero),
       );
