@@ -28,7 +28,7 @@ export const divide = (a: number, b: number): number => {
 export const safeDivide: (a: number, b: number) => Option<number> = (
   a: number,
   b: number,
-) => (b === 0 ? option.none : option.some(divide(a, b)));
+) => option.fromPredicate(() => b !== 0)(divide(a, b));
 
 // You probably wrote `safeDivide` using `if` statements and it's perfectly valid!
 // There are ways to not use `if` statements.
