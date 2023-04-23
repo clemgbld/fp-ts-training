@@ -46,7 +46,7 @@ export const not = (value: boolean) => !value;
 export const isOddP: (value: number) => boolean = (num: number) =>
   pipe(num, isEven, not);
 
-export const isOddF: (value: number) => boolean = unimplemented;
+export const isOddF: (value: number) => boolean = flow(isEven, not);
 
 // We will write a function that for any given number, computes the next
 // one according to the following rules:

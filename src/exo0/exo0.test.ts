@@ -16,13 +16,13 @@ describe('exo0', () => {
   });
 
   describe('isOddF', () => {
-    it.skip('should return true if the provided number is odd', () => {
+    it('should return true if the provided number is odd', () => {
       const oddValue = 1;
 
       expect(isOddF(oddValue)).toBe(true);
     });
 
-    it.skip('should return false if the provided number is even', () => {
+    it('should return false if the provided number is even', () => {
       const oddValue = 2;
 
       expect(isOddF(oddValue)).toBe(false);
