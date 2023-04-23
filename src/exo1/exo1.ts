@@ -7,8 +7,8 @@
 import { Either } from 'fp-ts/Either';
 import { Option } from 'fp-ts/Option';
 import { TaskEither } from 'fp-ts/TaskEither';
-import { option, either } from 'fp-ts';
-import { unimplemented, sleep, unimplementedAsync } from '../utils';
+import { option, either, taskEither } from 'fp-ts';
+import { sleep } from '../utils';
 
 export const divide = (a: number, b: number): number => {
   return a / b;
@@ -90,4 +90,8 @@ export const asyncDivide = async (a: number, b: number) => {
 export const asyncSafeDivideWithError: (
   a: number,
   b: number,
-) => TaskEither<DivisionByZeroError, number> = unimplementedAsync;
+) => TaskEither<DivisionByZeroError, number> = (a: number, b: number) =>
+  taskEither.tryCatch(
+    () => asyncDivide(a, b),
+    (_: unknown) => DivisionByZero,
+  );

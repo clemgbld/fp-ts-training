@@ -47,7 +47,7 @@ describe('exo1', () => {
   });
 
   describe('asyncDivide', () => {
-    it.skip('should eventually return the result of dividing two numbers', async () => {
+    it('should eventually return the result of dividing two numbers', async () => {
       const result = await asyncDivide(25, 5);
 
       expect(result).toEqual(5);
@@ -60,13 +60,13 @@ describe('exo1', () => {
   });
 
   describe('asyncSafeDivideWithError', () => {
-    it.skip('should eventually return the result of dividing two numbers', async () => {
+    it('should eventually return the result of dividing two numbers', async () => {
       const result = await asyncSafeDivideWithError(25, 5)();
 
       expect(result).toStrictEqual(either.right(5));
     });
 
-    it.skip('should eventually return either.left(DivisionByZero) if the denominator is zero', async () => {
+    it('should eventually return either.left(DivisionByZero) if the denominator is zero', async () => {
       const resultA = await asyncSafeDivideWithError(25, 0)();
       const resultB = await asyncSafeDivideWithError(-25, 0)();
 
