@@ -78,4 +78,4 @@ export const next: (value: number) => number = (value: number) =>
 // a_n from the Collatz sequence, returns the number a_n+3 (ie. the number
 // three steps ahead in the sequence).
 
-export const next3: (value: number) => number = unimplemented;
+export const next3: (value: number) => number = flow(next, next, next);

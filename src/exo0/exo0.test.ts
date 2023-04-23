@@ -38,7 +38,7 @@ describe('exo0', () => {
   });
 
   describe('next3', () => {
-    it.skip('should return the correct element in the Collatz sequence 3 steps ahead', () => {
+    it('should return the correct element in the Collatz sequence 3 steps ahead', () => {
       expect(next3(12)).toBe(10);
       expect(next3(10)).toBe(8);
       expect(next3(8)).toBe(1);
