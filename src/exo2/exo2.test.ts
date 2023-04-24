@@ -128,7 +128,7 @@ describe('exo2', () => {
   });
 
   describe('smashOption', () => {
-    it.skip('should return option.none if the character is of the wrong type', () => {
+    it('should return option.none if the character is of the wrong type', () => {
       const wizard = new Wizard();
       const archer = new Archer();
 
@@ -141,7 +141,7 @@ describe('exo2', () => {
       expect(resultArcher).toStrictEqual(expected);
     });
 
-    it.skip('should return option.some(Damage.Physical) if the character is a warrior', () => {
+    it('should return option.some(Damage.Physical) if the character is a warrior', () => {
       const warrior = new Warrior();
 
       const result = smashOption(warrior);
@@ -152,7 +152,7 @@ describe('exo2', () => {
   });
 
   describe('burnOption', () => {
-    it.skip('should return option.none if the character is of the wrong type', () => {
+    it('should return option.none if the character is of the wrong type', () => {
       const warrior = new Warrior();
       const archer = new Archer();
 
@@ -165,7 +165,7 @@ describe('exo2', () => {
       expect(resultArcher).toStrictEqual(expected);
     });
 
-    it.skip('should return option.some(Damage.Magical) if the character is a wizard', () => {
+    it('should return option.some(Damage.Magical) if the character is a wizard', () => {
       const wizard = new Wizard();
 
       const result = burnOption(wizard);
@@ -176,7 +176,7 @@ describe('exo2', () => {
   });
 
   describe('shootOption', () => {
-    it.skip('should return option.none if the character is of the wrong type', () => {
+    it('should return option.none if the character is of the wrong type', () => {
       const warrior = new Warrior();
       const wizard = new Wizard();
 
@@ -189,7 +189,7 @@ describe('exo2', () => {
       expect(resultWizard).toStrictEqual(expected);
     });
 
-    it.skip('should return option.some(Damage.Ranged) if the character is an archer', () => {
+    it('should return option.some(Damage.Ranged) if the character is an archer', () => {
       const archer = new Archer();
 
       const result = shootOption(archer);

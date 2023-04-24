@@ -5,7 +5,7 @@ import { Either } from 'fp-ts/Either';
 import { Option } from 'fp-ts/Option';
 import { Failure } from '../Failure';
 import { unimplemented } from '../utils';
-import { either } from 'fp-ts';
+import { either, option } from 'fp-ts';
 import { pipe } from 'fp-ts/lib/function';
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -184,14 +184,17 @@ export const checkTargetAndShoot: (
 // BONUS POINTS: If you properly defined small private helpers in the previous
 // section, they should be easily reused for those use-cases.
 
-export const smashOption: (character: Character) => Option<Damage> =
-  unimplemented;
+export const smashOption: (character: Character) => Option<Damage> = (
+  character: Character,
+) => option.fromEither(checkTargetAndSmash(option.some(character)));
 
-export const burnOption: (character: Character) => Option<Damage> =
-  unimplemented;
+export const burnOption: (character: Character) => Option<Damage> = (
+  character: Character,
+) => option.fromEither(checkTargetAndBurn(option.some(character)));
 
-export const shootOption: (character: Character) => Option<Damage> =
-  unimplemented;
+export const shootOption: (character: Character) => Option<Damage> = (
+  character: Character,
+) => option.fromEither(checkTargetAndShoot(option.some(character)));
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                   ARRAY                                   //
