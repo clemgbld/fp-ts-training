@@ -123,7 +123,7 @@ export const checkTargetAndSmash: (
   target: Option<Character>,
 ) => Either<NoTargetFailure | InvalidTargetFailure, Damage> = (
   target: Option<Character>,
-): Either<NoTargetFailure | InvalidTargetFailure, Damage> =>
+) =>
   pipe(
     target,
     either.fromOption(() => noTargetFailure('No unit currently selected')),
@@ -137,11 +137,35 @@ export const checkTargetAndSmash: (
 
 export const checkTargetAndBurn: (
   target: Option<Character>,
-) => Either<NoTargetFailure | InvalidTargetFailure, Damage> = unimplemented;
+) => Either<NoTargetFailure | InvalidTargetFailure, Damage> = (
+  target: Option<Character>,
+) =>
+  pipe(
+    target,
+    either.fromOption(() => noTargetFailure('No unit currently selected')),
+    either.chainW(t =>
+      either.fromPredicate(isWizard, () =>
+        invalidTargetFailure(`${t.toString()} cannot perform burn`),
+      )(t),
+    ),
+    either.chain(t => either.right(t.burn())),
+  );
 
 export const checkTargetAndShoot: (
   target: Option<Character>,
-) => Either<NoTargetFailure | InvalidTargetFailure, Damage> = unimplemented;
+) => Either<NoTargetFailure | InvalidTargetFailure, Damage> = (
+  target: Option<Character>,
+) =>
+  pipe(
+    target,
+    either.fromOption(() => noTargetFailure('No unit currently selected')),
+    either.chainW(t =>
+      either.fromPredicate(isArcher, () =>
+        invalidTargetFailure(`${t.toString()} cannot perform shoot`),
+      )(t),
+    ),
+    either.chain(t => either.right(t.shoot())),
+  );
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                  OPTION                                   //
