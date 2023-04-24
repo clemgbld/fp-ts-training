@@ -4,7 +4,7 @@
 import { Either } from 'fp-ts/Either';
 import { Option } from 'fp-ts/Option';
 import { Failure } from '../Failure';
-import { unimplemented } from '../utils';
+import { filterMap } from 'fp-ts/lib/ReadonlyArray';
 import { either, option } from 'fp-ts';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -215,5 +215,10 @@ export interface TotalDamage {
   [Damage.Ranged]: number;
 }
 
-export const attack: (army: ReadonlyArray<Character>) => TotalDamage =
-  unimplemented;
+export const attack: (army: ReadonlyArray<Character>) => TotalDamage = (
+  army: ReadonlyArray<Character>,
+) => ({
+  [Damage.Physical]: filterMap(smashOption)(army).length,
+  [Damage.Magical]: filterMap(burnOption)(army).length,
+  [Damage.Ranged]: filterMap(shootOption)(army).length,
+});

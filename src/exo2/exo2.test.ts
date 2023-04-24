@@ -200,7 +200,7 @@ describe('exo2', () => {
   });
 
   describe('attack', () => {
-    it.skip('should return the correct number of each type of attacks', () => {
+    it('should return the correct number of each type of attacks', () => {
       const warrior = new Warrior();
       const wizard = new Wizard();
       const archer = new Archer();
