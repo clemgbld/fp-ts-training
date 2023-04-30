@@ -2,7 +2,7 @@
 // Managing nested effectful data with `traverse`
 
 import { option, readonlyRecord, task } from 'fp-ts';
-import { flow, pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/lib/function';
 import { Option } from 'fp-ts/lib/Option';
 import { ReadonlyRecord } from 'fp-ts/lib/ReadonlyRecord';
 import { Task } from 'fp-ts/lib/Task';
