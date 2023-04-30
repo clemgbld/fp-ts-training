@@ -3,7 +3,7 @@
 
 import { Option } from 'fp-ts/Option';
 import { unimplemented } from '../utils';
-import { number, readonlyArray, string } from 'fp-ts';
+import { number, ord, readonlyArray, string } from 'fp-ts';
 
 // Have you ever looked at the methods provided by `fp-ts` own `Array` and
 // `ReadonlyArray` modules? They expose a load of functions to manipulate
@@ -58,7 +58,7 @@ export const sortNumbers: (
 
 export const sortNumbersDescending: (
   numbers: ReadonlyArray<number>,
-) => ReadonlyArray<number> = unimplemented;
+) => ReadonlyArray<number> = readonlyArray.sort(ord.reverse(number.Ord));
 
 ///////////////////////////////////////////////////////////////////////////////
 //                            SORT OPTIONAL VALUES                           //

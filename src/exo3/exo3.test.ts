@@ -33,7 +33,7 @@ describe('exo3', () => {
   });
 
   describe('sortNumbersDescending', () => {
-    it.skip('should return a sorted array of descending numbers', () => {
+    it('should return a sorted array of descending numbers', () => {
       const numbers = [1337, 42, 5701];
 
       const result = sortNumbersDescending(numbers);
