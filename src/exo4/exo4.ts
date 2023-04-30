@@ -90,7 +90,13 @@ export const sayHello = (country: Country): string => {
 // HINT: You can look into `reader.map` to modify the output of a `Reader`
 // action.
 
-export const greet: (name: string) => Reader<Country, string> = unimplemented();
+export const greet: (name: string) => Reader<Country, string> = (
+  name: string,
+) =>
+  pipe(
+    reader.ask<Country>(),
+    reader.map(country => `${sayHello(country)}, ${name}`),
+  );
 
 // Finally, we are going to compose multiple `Reader`s together.
 //

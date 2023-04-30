@@ -2,19 +2,19 @@ import { Country, exclamation, greet, excitedlyGreet } from './exo4';
 
 describe('exo4', () => {
   describe('greet', () => {
-    it.skip('should greet Alice in french', () => {
+    it('should greet Alice in french', () => {
       const result = greet('Alice')(Country.France);
 
       expect(result).toStrictEqual('Bonjour, Alice');
     });
 
-    it.skip('should greet Bernardo in spanish', () => {
+    it('should greet Bernardo in spanish', () => {
       const result = greet('Bernardo')(Country.Spain);
 
       expect(result).toStrictEqual('Buenos dìas, Bernardo');
     });
 
-    it.skip('should greet Crystal in english', () => {
+    it('should greet Crystal in english', () => {
       const result = greet('Crystal')(Country.USA);
 
       expect(result).toStrictEqual('Hello, Crystal');
