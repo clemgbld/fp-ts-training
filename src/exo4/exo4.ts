@@ -2,9 +2,7 @@
 // Dependency injection with `Reader`
 
 import { Reader } from 'fp-ts/Reader';
-
-import { unimplemented } from '../utils';
-import { reader, either } from 'fp-ts';
+import { reader } from 'fp-ts';
 import { pipe } from 'fp-ts/lib/function';
 
 // Sometimes, a function can have a huge amount of dependencies (services,
