@@ -2,9 +2,8 @@
 // Sort things out with `Ord`
 
 import { Option } from 'fp-ts/Option';
-import { unimplemented } from '../utils';
 import { number, option, ord, readonlyArray, string } from 'fp-ts';
-import { flow, pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/lib/function';
 
 // Have you ever looked at the methods provided by `fp-ts` own `Array` and
 // `ReadonlyArray` modules? They expose a load of functions to manipulate
@@ -103,24 +102,24 @@ export interface Person {
   readonly age: Option<number>;
 }
 
+const byName = pipe(
+  string.Ord,
+  ord.contramap(({ name }: Person) => name),
+);
+
+const byAge = pipe(
+  number.Ord,
+  option.getOrd,
+  ord.contramap(({ age }: Person) => age),
+);
+
 export const sortPersonsByName: (
   persons: ReadonlyArray<Person>,
-) => ReadonlyArray<Person> = readonlyArray.sort(
-  pipe(
-    string.Ord,
-    ord.contramap(({ name }: Person) => name),
-  ),
-);
+) => ReadonlyArray<Person> = readonlyArray.sort(byName);
 
 export const sortPersonsByAge: (
   persons: ReadonlyArray<Person>,
-) => ReadonlyArray<Person> = readonlyArray.sort(
-  pipe(
-    number.Ord,
-    option.getOrd,
-    ord.contramap(({ age }: Person) => age),
-  ),
-);
+) => ReadonlyArray<Person> = readonlyArray.sort(byAge);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                          COMBINE SORTING SCHEMES                          //
@@ -133,4 +132,4 @@ export const sortPersonsByAge: (
 
 export const sortPersonsByAgeThenByName: (
   persons: ReadonlyArray<Person>,
-) => ReadonlyArray<Person> = unimplemented;
+) => ReadonlyArray<Person> = readonlyArray.sortBy([byAge, byName]);

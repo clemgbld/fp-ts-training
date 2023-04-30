@@ -85,7 +85,7 @@ describe('exo3', () => {
   });
 
   describe('sortPersonsByName', () => {
-    it.skip('should return an array of persons sorted first by age and then by name', () => {
+    it('should return an array of persons sorted first by age and then by name', () => {
       const alice = { name: 'Alice', age: option.some(42) };
       const bob = { name: 'Bob', age: option.none };
       const crystal = { name: 'Crystal', age: option.some(29) };
