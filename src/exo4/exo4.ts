@@ -60,9 +60,7 @@ export const exclamation: (sentence: string) => Reader<Country, string> = (
     reader.ask<Country>(),
     reader.chain(country => () => {
       if (isFrance(country)) return sentence + ' !';
-
       if (isUsa(country)) return sentence + '!';
-
       return `¡${sentence}!`;
     }),
   );
@@ -110,5 +108,6 @@ export const greet: (name: string) => Reader<Country, string> = (
 // HINT: As with other wrapper types in `fp-ts`, `reader` offers a way of
 // composing effects with `reader.chain`.
 
-export const excitedlyGreet: (name: string) => Reader<Country, string> =
-  unimplemented();
+export const excitedlyGreet: (name: string) => Reader<Country, string> = (
+  name: string,
+) => pipe(greet(name), reader.chain(exclamation));

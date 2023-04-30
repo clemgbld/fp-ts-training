@@ -42,19 +42,19 @@ describe('exo4', () => {
   });
 
   describe('excitedlyGreet', () => {
-    it.skip('should excitedly greet Alice in french', () => {
+    it('should excitedly greet Alice in french', () => {
       const result = excitedlyGreet('Alice')(Country.France);
 
       expect(result).toStrictEqual('Bonjour, Alice !');
     });
 
-    it.skip('should excitedly greet Bernardo in spanish', () => {
+    it('should excitedly greet Bernardo in spanish', () => {
       const result = excitedlyGreet('Bernardo')(Country.Spain);
 
       expect(result).toStrictEqual('¡Buenos dìas, Bernardo!');
     });
 
-    it.skip('should excitedly greet Crystal in english', () => {
+    it('should excitedly greet Crystal in english', () => {
       const result = excitedlyGreet('Crystal')(Country.USA);
 
       expect(result).toStrictEqual('Hello, Crystal!');
