@@ -28,19 +28,19 @@ describe('exo5', () => {
     });
   });
   describe('giveCurrencyOfCountryToUser', () => {
-    it.skip('should return Some<EUR> if provided string is "France"', async () => {
+    it('should return Some<EUR> if provided string is "France"', async () => {
       const result = await giveCurrencyOfCountryToUser('France')();
 
       expect(result).toStrictEqual(option.some('EUR'));
     });
 
-    it.skip('should return Some<DOLLAR> if provided string is "USA"', async () => {
+    it('should return Some<DOLLAR> if provided string is "USA"', async () => {
       const result = await giveCurrencyOfCountryToUser('USA')();
 
       expect(result).toStrictEqual(option.some('DOLLAR'));
     });
 
-    it.skip('should return None if provided string is "Germany"', async () => {
+    it('should return None if provided string is "Germany"', async () => {
       const result = await giveCurrencyOfCountryToUser('Germany')();
 
       expect(result).toStrictEqual(option.none);

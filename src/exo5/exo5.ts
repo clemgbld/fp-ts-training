@@ -95,8 +95,8 @@ export const naiveGiveCurrencyOfCountryToUser = (
 
 export const getCountryCurrencyOfOptionalCountryCode: (
   optionalCountryCode: Option<CountryCode>,
-) => Task<Option<Currency>> = flow(
-  option.traverse(task.ApplicativePar)(getCountryCurrency),
+) => Task<Option<Currency>> = option.traverse(task.ApplicativePar)(
+  getCountryCurrency,
 );
 
 // Let's now use this function in our naive implementation's pipe to see how it
@@ -109,7 +109,12 @@ export const getCountryCurrencyOfOptionalCountryCode: (
 
 export const giveCurrencyOfCountryToUser: (
   countryNameFromUserMock: string,
-) => Task<Option<Currency>> = unimplementedAsync;
+) => Task<Option<Currency>> = (countryNameFromUserMock: string) =>
+  pipe(
+    getCountryNameFromUser(countryNameFromUserMock),
+    task.map(getCountryCode),
+    task.chain(getCountryCurrencyOfOptionalCountryCode),
+  );
 
 // BONUS: We don't necessarily need `traverse` to do this. Try implementing
 // `giveCurrencyOfCountryToUser` by lifting some of the functions' results to
