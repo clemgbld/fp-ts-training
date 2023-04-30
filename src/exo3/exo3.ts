@@ -4,6 +4,7 @@
 import { Option } from 'fp-ts/Option';
 import { unimplemented } from '../utils';
 import { number, option, ord, readonlyArray, string } from 'fp-ts';
+import { flow, pipe } from 'fp-ts/lib/function';
 
 // Have you ever looked at the methods provided by `fp-ts` own `Array` and
 // `ReadonlyArray` modules? They expose a load of functions to manipulate
@@ -104,11 +105,22 @@ export interface Person {
 
 export const sortPersonsByName: (
   persons: ReadonlyArray<Person>,
-) => ReadonlyArray<Person> = unimplemented;
+) => ReadonlyArray<Person> = readonlyArray.sort(
+  pipe(
+    string.Ord,
+    ord.contramap(({ name }: Person) => name),
+  ),
+);
 
 export const sortPersonsByAge: (
   persons: ReadonlyArray<Person>,
-) => ReadonlyArray<Person> = unimplemented;
+) => ReadonlyArray<Person> = readonlyArray.sort(
+  pipe(
+    number.Ord,
+    option.getOrd,
+    ord.contramap(({ age }: Person) => age),
+  ),
+);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                          COMBINE SORTING SCHEMES                          //
