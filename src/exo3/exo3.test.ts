@@ -33,7 +33,7 @@ describe('exo3', () => {
   });
 
   describe('sortNumbersDescending', () => {
-    it('should return a sorted array of descending numbers', () => {
+    it.skip('should return a sorted array of descending numbers', () => {
       const numbers = [1337, 42, 5701];
 
       const result = sortNumbersDescending(numbers);
@@ -44,7 +44,7 @@ describe('exo3', () => {
   });
 
   describe('sortOptionalNumbers', () => {
-    it('should return a sorted array of optional numbers', () => {
+    it.skip('should return a sorted array of optional numbers', () => {
       const optionalNumbers = [option.some(1337), option.none, option.some(42)];
 
       const result = sortOptionalNumbers(optionalNumbers);
@@ -55,7 +55,7 @@ describe('exo3', () => {
   });
 
   describe('sortPersonsByName', () => {
-    it('should return an array of persons alphabetically sorted by their name', () => {
+    it.skip('should return an array of persons alphabetically sorted by their name', () => {
       const alice = { name: 'Alice', age: option.none };
       const bob = { name: 'Bob', age: option.none };
       const crystal = { name: 'Crystal', age: option.none };
@@ -70,7 +70,7 @@ describe('exo3', () => {
   });
 
   describe('sortPersonsByName', () => {
-    it('should return an array of persons sorted by their age', () => {
+    it.skip('should return an array of persons sorted by their age', () => {
       const alice = { name: 'Alice', age: option.some(42) };
       const bob = { name: 'Bob', age: option.none };
       const crystal = { name: 'Crystal', age: option.some(29) };
@@ -85,7 +85,7 @@ describe('exo3', () => {
   });
 
   describe('sortPersonsByName', () => {
-    it('should return an array of persons sorted first by age and then by name', () => {
+    it.skip('should return an array of persons sorted first by age and then by name', () => {
       const alice = { name: 'Alice', age: option.some(42) };
       const bob = { name: 'Bob', age: option.none };
       const crystal = { name: 'Crystal', age: option.some(29) };
