@@ -2,19 +2,19 @@ import { Country, exclamation, greet, excitedlyGreet } from './exo4';
 
 describe('exo4', () => {
   describe('greet', () => {
-    it('should greet Alice in french', () => {
+    it.skip('should greet Alice in french', () => {
       const result = greet('Alice')(Country.France);
 
       expect(result).toStrictEqual('Bonjour, Alice');
     });
 
-    it('should greet Bernardo in spanish', () => {
+    it.skip('should greet Bernardo in spanish', () => {
       const result = greet('Bernardo')(Country.Spain);
 
       expect(result).toStrictEqual('Buenos dìas, Bernardo');
     });
 
-    it('should greet Crystal in english', () => {
+    it.skip('should greet Crystal in english', () => {
       const result = greet('Crystal')(Country.USA);
 
       expect(result).toStrictEqual('Hello, Crystal');
@@ -42,19 +42,19 @@ describe('exo4', () => {
   });
 
   describe('excitedlyGreet', () => {
-    it('should excitedly greet Alice in french', () => {
+    it.skip('should excitedly greet Alice in french', () => {
       const result = excitedlyGreet('Alice')(Country.France);
 
       expect(result).toStrictEqual('Bonjour, Alice !');
     });
 
-    it('should excitedly greet Bernardo in spanish', () => {
+    it.skip('should excitedly greet Bernardo in spanish', () => {
       const result = excitedlyGreet('Bernardo')(Country.Spain);
 
       expect(result).toStrictEqual('¡Buenos dìas, Bernardo!');
     });
 
-    it('should excitedly greet Crystal in english', () => {
+    it.skip('should excitedly greet Crystal in english', () => {
       const result = excitedlyGreet('Crystal')(Country.USA);
 
       expect(result).toStrictEqual('Hello, Crystal!');

@@ -4,6 +4,8 @@
 import { Reader } from 'fp-ts/Reader';
 
 import { unimplemented } from '../utils';
+import { reader, either } from 'fp-ts';
+import { pipe } from 'fp-ts/lib/function';
 
 // Sometimes, a function can have a huge amount of dependencies (services,
 // repositories, ...) and it is often impractical (not to say truly annoying)
@@ -44,8 +46,26 @@ export enum Country {
 //
 // HINT: Take a look at `reader.ask` to access the environment value
 
-export const exclamation: (sentence: string) => Reader<Country, string> =
-  unimplemented();
+const isCountry = (desiredCountry: Country) => (country: Country) =>
+  country === desiredCountry;
+
+const isFrance = isCountry(Country.France);
+
+const isUsa = isCountry(Country.USA);
+
+export const exclamation: (sentence: string) => Reader<Country, string> = (
+  sentence: string,
+) =>
+  pipe(
+    reader.ask<Country>(),
+    reader.chain(country => () => {
+      if (isFrance(country)) return sentence + ' !';
+
+      if (isUsa(country)) return sentence + '!';
+
+      return `¡${sentence}!`;
+    }),
+  );
 
 // Obviously, different countries often mean different languages and so
 // different words for saying "Hello":
