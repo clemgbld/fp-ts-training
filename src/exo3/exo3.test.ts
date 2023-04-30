@@ -44,7 +44,7 @@ describe('exo3', () => {
   });
 
   describe('sortOptionalNumbers', () => {
-    it.skip('should return a sorted array of optional numbers', () => {
+    it('should return a sorted array of optional numbers', () => {
       const optionalNumbers = [option.some(1337), option.none, option.some(42)];
 
       const result = sortOptionalNumbers(optionalNumbers);
