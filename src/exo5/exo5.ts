@@ -2,7 +2,7 @@
 // Managing nested effectful data with `traverse`
 
 import { option, readonlyRecord, task } from 'fp-ts';
-import { pipe } from 'fp-ts/lib/function';
+import { flow, pipe } from 'fp-ts/lib/function';
 import { Option } from 'fp-ts/lib/Option';
 import { ReadonlyRecord } from 'fp-ts/lib/ReadonlyRecord';
 import { Task } from 'fp-ts/lib/Task';
@@ -95,7 +95,9 @@ export const naiveGiveCurrencyOfCountryToUser = (
 
 export const getCountryCurrencyOfOptionalCountryCode: (
   optionalCountryCode: Option<CountryCode>,
-) => Task<Option<Currency>> = unimplementedAsync;
+) => Task<Option<Currency>> = flow(
+  option.traverse(task.ApplicativePar)(getCountryCurrency),
+);
 
 // Let's now use this function in our naive implementation's pipe to see how it
 // improves it.
