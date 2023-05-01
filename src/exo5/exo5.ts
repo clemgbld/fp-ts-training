@@ -229,7 +229,7 @@ export const performAsyncComputationInSequence: (
 
 export const sequenceOptionTask: (
   optionOfTask: Option<Task<Currency>>,
-) => Task<Option<Currency>> = unimplementedAsync;
+) => Task<Option<Currency>> = option.sequence(task.ApplicativeSeq);
 
 export const sequenceOptionArray: (
   arrayOfOptions: ReadonlyArray<Option<CountryCode>>,

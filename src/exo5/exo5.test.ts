@@ -76,11 +76,11 @@ describe('exo5', () => {
     });
   });
   describe('sequenceOptionTask', () => {
-    it.skip('should return a None if called with a None', async () => {
+    it('should return a None if called with a None', async () => {
       const result = await sequenceOptionTask(option.none)();
       expect(result).toStrictEqual(option.none);
     });
-    it.skip('should return a Some if called with a Some', async () => {
+    it('should return a Some if called with a Some', async () => {
       const result = await sequenceOptionTask(option.some(async () => 'EUR'))();
       expect(result).toStrictEqual(option.some('EUR'));
     });
