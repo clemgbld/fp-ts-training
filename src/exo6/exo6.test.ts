@@ -21,7 +21,7 @@ describe('exo6', () => {
     expect(result).toEqual(either.right('Rob'));
   });
 
-  it.skip('should return the concatenation of the two capitalized user names', async () => {
+  it('should return the concatenation of the two capitalized user names', async () => {
     const usecase = getConcatenationOfTheTwoUserNames({
       userIdOne: '1',
       userIdTwo: '2',

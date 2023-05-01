@@ -25,17 +25,22 @@ import { rte } from '../readerTaskEither';
 // current context. In the following example, we need to fetch a user by its id
 // and then we want to return its capitalized.
 
+const capitalized = (word: string): string =>
+  `${word[0].toUpperCase()}${word.slice(1)}`;
+
+const capitalizedUserName = ({ name }: User.User) => capitalized(name);
+
 export const getCapitalizedUserName: (args: {
   userId: string;
 }) => ReaderTaskEither<
   User.Repository.Access,
   User.Repository.UserNotFoundError,
   string
-> = ({ userId }: { userId: string }) =>
+> = ({ userId }) =>
   pipe(
     rte.ask<User.Repository.Access>(),
     rte.chain(deps => rte.fromTaskEither(deps.userRepository.getById(userId))),
-    rte.map(user => user.name[0].toUpperCase() + user.name.slice(1)),
+    rte.map(capitalizedUserName),
   );
 
 // Sometimes you will need to get multiple data before performing an operation
@@ -59,7 +64,20 @@ export const getConcatenationOfTheTwoUserNames: (args: {
   User.Repository.Access,
   User.Repository.UserNotFoundError,
   string
-> = unimplemented;
+> = ({ userIdOne, userIdTwo }) =>
+  pipe(
+    rte.Do,
+    rte.apS('user1', (deps: User.Repository.Access) =>
+      deps.userRepository.getById(userIdOne),
+    ),
+    rte.apS('user2', (deps: User.Repository.Access) =>
+      deps.userRepository.getById(userIdTwo),
+    ),
+    rte.map(
+      ({ user1, user2 }) =>
+        capitalizedUserName(user1) + capitalizedUserName(user2),
+    ),
+  );
 
 // Sometimes, you will need to feed the current context with data that you can
 // only retrieve after performing some operations, in other words, operations
