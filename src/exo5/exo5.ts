@@ -6,7 +6,7 @@ import { pipe } from 'fp-ts/lib/function';
 import { Option } from 'fp-ts/lib/Option';
 import { ReadonlyRecord } from 'fp-ts/lib/ReadonlyRecord';
 import { Task } from 'fp-ts/lib/Task';
-import { sleep, unimplemented, unimplementedAsync } from '../utils';
+import { sleep } from '../utils';
 
 // When using many different Functors in a complex application, we can easily
 // get to a point when we have many nested types that we would like to 'merge',
