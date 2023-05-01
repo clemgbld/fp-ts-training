@@ -62,7 +62,7 @@ describe('exo5', () => {
   });
 
   describe('performAsyncComputationInParallel', () => {
-    it.skip('should return the same value for each element with the same value', async () => {
+    it('should return the same value for each element with the same value', async () => {
       const result = await performAsyncComputationInParallel([1, 1, 1])();
 
       expect(result).toStrictEqual([1, 1, 1]);

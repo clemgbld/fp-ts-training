@@ -191,7 +191,9 @@ const createSimulatedAsyncMethod = (): ((toAdd: number) => Task<number>) => {
 export const simulatedAsyncMethodForParallel = createSimulatedAsyncMethod();
 export const performAsyncComputationInParallel: (
   numbers: ReadonlyArray<number>,
-) => Task<ReadonlyArray<number>> = unimplementedAsync;
+) => Task<ReadonlyArray<number>> = task.traverseArray(
+  simulatedAsyncMethodForParallel,
+);
 
 // Write a method to traverse an array by running the method
 // `simulatedAsyncMethodForSequence: (toAdd: number) => Task<number>`
