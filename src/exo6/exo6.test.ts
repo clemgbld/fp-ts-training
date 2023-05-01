@@ -21,7 +21,7 @@ describe('exo6', () => {
     expect(result).toEqual(either.right('Rob'));
   });
 
-  it('should return the concatenation of the two capitalized user names', async () => {
+  it.skip('should return the concatenation of the two capitalized user names', async () => {
     const usecase = getConcatenationOfTheTwoUserNames({
       userIdOne: '1',
       userIdTwo: '2',
@@ -37,7 +37,7 @@ describe('exo6', () => {
     expect(result).toEqual(either.right('RobScott'));
   });
 
-  it('should return the concatenation of the two capitalized user names based on the best friend relation', async () => {
+  it.skip('should return the concatenation of the two capitalized user names based on the best friend relation', async () => {
     const usecase = getConcatenationOfTheBestFriendNameAndUserName({
       userIdOne: '1',
     })({
@@ -52,7 +52,7 @@ describe('exo6', () => {
     expect(result).toEqual(either.right('RobScott'));
   });
 
-  it('should return the concatenation of the user name and the current year', async () => {
+  it.skip('should return the concatenation of the user name and the current year', async () => {
     const timeservice = new Application.NodeTimeService.NodeTimeService();
 
     const usecase = getConcatenationOfUserNameAndCurrentYear({

@@ -5,6 +5,8 @@ import { ReaderTaskEither } from 'fp-ts/lib/ReaderTaskEither';
 import { unimplemented } from '../utils';
 import { Application } from './application';
 import { User } from './domain';
+import { pipe } from 'fp-ts/lib/function';
+import { rte } from '../readerTaskEither';
 
 // In real world applications you will mostly manipulate `ReaderTaskEither` aka
 // `rte` in the use-cases of the application.
@@ -23,14 +25,18 @@ import { User } from './domain';
 // current context. In the following example, we need to fetch a user by its id
 // and then we want to return its capitalized.
 
-
 export const getCapitalizedUserName: (args: {
   userId: string;
 }) => ReaderTaskEither<
   User.Repository.Access,
   User.Repository.UserNotFoundError,
   string
-> = unimplemented;
+> = ({ userId }: { userId: string }) =>
+  pipe(
+    rte.ask<User.Repository.Access>(),
+    rte.chain(deps => rte.fromTaskEither(deps.userRepository.getById(userId))),
+    rte.map(user => user.name[0].toUpperCase() + user.name.slice(1)),
+  );
 
 // Sometimes you will need to get multiple data before performing an operation
 // on them. In this case, it is very convenient to use the `Do` notation.
