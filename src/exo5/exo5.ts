@@ -153,7 +153,7 @@ export const getCountryCodeOfCountryNames = (
 
 export const getValidCountryCodeOfCountryNames: (
   countryNames: ReadonlyArray<string>,
-) => Option<ReadonlyArray<CountryCode>> = unimplemented;
+) => Option<ReadonlyArray<CountryCode>> = option.traverseArray(getCountryCode);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                   TRAVERSING ARRAYS ASYNCHRONOUSLY                        //

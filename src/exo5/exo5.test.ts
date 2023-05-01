@@ -48,13 +48,13 @@ describe('exo5', () => {
   });
 
   describe('getValidCountryCodeOfCountryNames', () => {
-    it.skip('should return a Some of the country codes if all the country names are valid', () => {
+    it('should return a Some of the country codes if all the country names are valid', () => {
       const result = getValidCountryCodeOfCountryNames(['France', 'Spain']);
 
       expect(result).toStrictEqual(option.some(['FR', 'SP']));
     });
 
-    it.skip('should return a None if any of the country names is not valid', () => {
+    it('should return a None if any of the country names is not valid', () => {
       const result = getValidCountryCodeOfCountryNames(['France', 'Germany']);
 
       expect(result).toStrictEqual(option.none);
