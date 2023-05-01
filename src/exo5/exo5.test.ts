@@ -69,7 +69,7 @@ describe('exo5', () => {
     });
   });
   describe('performAsyncComputationInSequence', () => {
-    it.skip('should return an increasing value for each element with the same value', async () => {
+    it('should return an increasing value for each element with the same value', async () => {
       const result = await performAsyncComputationInSequence([1, 1, 1])();
 
       expect(result).toStrictEqual([1, 2, 3]);

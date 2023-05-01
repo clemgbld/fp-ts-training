@@ -205,7 +205,9 @@ export const performAsyncComputationInParallel: (
 export const simulatedAsyncMethodForSequence = createSimulatedAsyncMethod();
 export const performAsyncComputationInSequence: (
   numbers: ReadonlyArray<number>,
-) => Task<ReadonlyArray<number>> = unimplementedAsync;
+) => Task<ReadonlyArray<number>> = task.traverseSeqArray(
+  simulatedAsyncMethodForSequence,
+);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                               SEQUENCE                                    //
