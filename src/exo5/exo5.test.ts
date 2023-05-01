@@ -86,11 +86,11 @@ describe('exo5', () => {
     });
   });
   describe('sequenceOptionArray', () => {
-    it.skip('should return a None if one of the option in the array is None', () => {
+    it('should return a None if one of the option in the array is None', () => {
       const result = sequenceOptionArray([option.none, option.some('FR')]);
       expect(result).toStrictEqual(option.none);
     });
-    it.skip('should return a Some if all the options in the arrat are Some', () => {
+    it('should return a Some if all the options in the arrat are Some', () => {
       const result = sequenceOptionArray([
         option.some('FR'),
         option.some('SP'),
