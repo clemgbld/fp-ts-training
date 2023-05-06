@@ -64,7 +64,7 @@ describe('exo7', () => {
   });
 
   describe('allPageViews', () => {
-    it.skip('should contain the map of aggregated page views from both sources of analytics', () => {
+    it('should contain the map of aggregated page views from both sources of analytics', () => {
       expect(allPageViews).toStrictEqual(
         new Map([
           ['home', { page: 'home', views: 15 }],
@@ -77,7 +77,7 @@ describe('exo7', () => {
   });
 
   describe('intersectionPageViews', () => {
-    it.skip('should contain the map of intersecting page views from both sources of analytics', () => {
+    it('should contain the map of intersecting page views from both sources of analytics', () => {
       expect(intersectionPageViews).toStrictEqual(
         new Map([
           ['home', { page: 'home', views: 15 }],

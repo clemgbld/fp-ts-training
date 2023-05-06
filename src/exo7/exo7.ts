@@ -8,9 +8,9 @@ import {
   semigroup,
   string,
 } from 'fp-ts';
-import { unimplemented } from '../utils';
 import { number } from 'fp-ts';
 import { pipe } from 'fp-ts/lib/function';
+import { Magma } from 'fp-ts/lib/Magma';
 
 // In this exercise, we will learn how to manipulate essential collections
 // such as `Set` and `Map`.
@@ -205,10 +205,22 @@ export const pageViewsB = new Map(
 //
 // In case a page appears in both sources, their view count should be summed.
 
-export const allPageViews: ReadonlyMap<string, Analytics> = unimplemented();
+class TotalPage implements Magma<Analytics> {
+  concat = (a: Analytics, b: Analytics) => ({
+    page: a.page,
+    views: a.views + b.views,
+  });
+}
+
+export const allPageViews: ReadonlyMap<string, Analytics> = pipe(
+  pageViewsA,
+  readonlyMap.union(string.Eq, new TotalPage())(pageViewsB),
+);
 
 // Construct the map with the total page views but only for the pages that
 // appear in both sources of analytics `pageViewsA` and `pageViewsB`.
 
-export const intersectionPageViews: ReadonlyMap<string, Analytics> =
-  unimplemented();
+export const intersectionPageViews: ReadonlyMap<string, Analytics> = pipe(
+  pageViewsA,
+  readonlyMap.intersection(string.Eq, new TotalPage())(pageViewsB),
+);
