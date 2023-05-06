@@ -52,13 +52,13 @@ describe('exo7', () => {
   });
 
   describe('nonPrimeOdds', () => {
-    it.skip('should contain only the odd numbers that are not prime', () => {
+    it('should contain only the odd numbers that are not prime', () => {
       expect(nonPrimeOdds).toStrictEqual(new Set([1, 9]));
     });
   });
 
   describe('primeOdds', () => {
-    it.skip('should contain only the odd numbers that are also prime', () => {
+    it('should contain only the odd numbers that are also prime', () => {
       expect(primeOdds).toStrictEqual(new Set([3, 5, 7]));
     });
   });

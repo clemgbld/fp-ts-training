@@ -10,6 +10,7 @@ import {
 } from 'fp-ts';
 import { unimplemented } from '../utils';
 import { number } from 'fp-ts';
+import { pipe } from 'fp-ts/lib/function';
 
 // In this exercise, we will learn how to manipulate essential collections
 // such as `Set` and `Map`.
@@ -157,12 +158,18 @@ export const odds = new Set([1, 3, 5, 7, 9]);
 // HINT:
 // - Be mindful of the order of operands for the operator you will chose.
 
-export const nonPrimeOdds: ReadonlySet<number> = unimplemented();
+export const nonPrimeOdds: ReadonlySet<number> = pipe(
+  odds,
+  readonlySet.difference(number.Eq)(primes),
+);
 
 // Construct the set `primeOdds` from the two sets defined above. It should
 // only include the odd numbers that are also prime.
 
-export const primeOdds: ReadonlySet<number> = unimplemented();
+export const primeOdds: ReadonlySet<number> = pipe(
+  odds,
+  readonlySet.intersection(number.Eq)(primes),
+);
 
 ///////////////////////////////////////////////////////////////////////////////
 
