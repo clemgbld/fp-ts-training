@@ -39,7 +39,7 @@ describe('exo7', () => {
   });
 
   describe('mapWithConcatenatedEntries', () => {
-    it.skip('should construct the map from `associativeArray` concatenating values for colliding keys', () => {
+    it('should construct the map from `associativeArray` concatenating values for colliding keys', () => {
       expect(mapWithConcatenatedEntries).toStrictEqual(
         new Map([
           [1, 'Alice'],

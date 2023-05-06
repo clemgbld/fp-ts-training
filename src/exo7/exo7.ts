@@ -1,7 +1,13 @@
 // `fp-ts` training Exercise 7
 // Manipulate collections with type-classes
 
-import { readonlyArray, readonlyMap, readonlySet, semigroup } from 'fp-ts';
+import {
+  readonlyArray,
+  readonlyMap,
+  readonlySet,
+  semigroup,
+  string,
+} from 'fp-ts';
 import { unimplemented } from '../utils';
 import { number } from 'fp-ts';
 
@@ -132,7 +138,11 @@ export const mapWithLastEntry: ReadonlyMap<number, string> =
 // helpful in defining `mapWithLastEntry`?
 
 export const mapWithConcatenatedEntries: ReadonlyMap<number, string> =
-  unimplemented();
+  readonlyMap.fromFoldable(
+    number.Eq,
+    string.Semigroup,
+    readonlyArray.Foldable,
+  )(associativeArray);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                     DIFFERENCE / UNION / INTERSECTION                     //
