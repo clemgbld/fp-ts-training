@@ -60,6 +60,15 @@ export const getCapitalizedUserName: (args: {
 const getUserById = (userId: string) => (deps: User.Repository.Access) =>
   deps.userRepository.getById(userId);
 
+const concatAndThenCapitalized: ({
+  user1,
+  user2,
+}: {
+  user1: User.User;
+  user2: User.User;
+}) => string = ({ user1, user2 }) =>
+  capitalizedUserName(user1) + capitalizedUserName(user2);
+
 export const getConcatenationOfTheTwoUserNames: (args: {
   userIdOne: string;
   userIdTwo: string;
@@ -72,10 +81,7 @@ export const getConcatenationOfTheTwoUserNames: (args: {
     rte.Do,
     rte.apS('user1', getUserById(userIdOne)),
     rte.apS('user2', getUserById(userIdTwo)),
-    rte.map(
-      ({ user1, user2 }) =>
-        capitalizedUserName(user1) + capitalizedUserName(user2),
-    ),
+    rte.map(concatAndThenCapitalized),
   );
 
 // Sometimes, you will need to feed the current context with data that you can
@@ -93,7 +99,13 @@ export const getConcatenationOfTheBestFriendNameAndUserName: (args: {
   User.Repository.Access,
   User.Repository.UserNotFoundError,
   string
-> = unimplemented;
+> = ({ userIdOne }) =>
+  pipe(
+    rte.Do,
+    rte.apS('user1', getUserById(userIdOne)),
+    rte.bindW('user2', ({ user1 }) => getUserById(user1.bestFriendId)),
+    rte.map(concatAndThenCapitalized),
+  );
 
 // Most of the time, you will need to use several external services.
 // The challenge of this usecase is to use TimeService in the flow of our `rte`
