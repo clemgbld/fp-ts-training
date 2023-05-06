@@ -18,7 +18,7 @@ describe('exo7', () => {
   });
 
   describe('numberArrayFromSet', () => {
-    it.skip('should be the array of unique values from `numberArray`', () => {
+    it('should be the array of unique values from `numberArray`', () => {
       expect(numberArrayFromSet).toStrictEqual(
         [...new Set(numberArray)].sort((a, b) => a - b),
       );
@@ -26,7 +26,7 @@ describe('exo7', () => {
   });
 
   describe('mapWithLastEntry', () => {
-    it.skip('should construct the map from `associativeArray` keeping only the last entry for colliding keys', () => {
+    it('should construct the map from `associativeArray` keeping only the last entry for colliding keys', () => {
       expect(mapWithLastEntry).toStrictEqual(
         new Map([
           [1, 'Alice'],
