@@ -1,7 +1,9 @@
 // `fp-ts` training Exercise 7
 // Manipulate collections with type-classes
 
+import { readonlySet } from 'fp-ts';
 import { unimplemented } from '../utils';
+import { fromEquals } from 'fp-ts/lib/Eq';
 
 // In this exercise, we will learn how to manipulate essential collections
 // such as `Set` and `Map`.
@@ -41,7 +43,9 @@ export const numberArray: ReadonlyArray<number> = [7, 42, 1337, 1, 0, 1337, 42];
 // - `fp-ts` doesn't know how you want to define equality for the inner type
 //   and requires you to provide an `Eq` instance
 
-export const numberSet: ReadonlySet<number> = unimplemented();
+export const numberSet: ReadonlySet<number> = readonlySet.fromReadonlyArray(
+  fromEquals((a: number, b: number) => a === b),
+)(numberArray);
 
 // Convert `numberSet` back to an an array in `numberArrayFromSet`.
 // You need to use the `ReadonlySet` module from `fp-ts` instead of the
