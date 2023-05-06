@@ -57,6 +57,9 @@ export const getCapitalizedUserName: (args: {
 //  ...
 // )
 
+const getUserById = (userId: string) => (deps: User.Repository.Access) =>
+  deps.userRepository.getById(userId);
+
 export const getConcatenationOfTheTwoUserNames: (args: {
   userIdOne: string;
   userIdTwo: string;
@@ -67,12 +70,8 @@ export const getConcatenationOfTheTwoUserNames: (args: {
 > = ({ userIdOne, userIdTwo }) =>
   pipe(
     rte.Do,
-    rte.apS('user1', (deps: User.Repository.Access) =>
-      deps.userRepository.getById(userIdOne),
-    ),
-    rte.apS('user2', (deps: User.Repository.Access) =>
-      deps.userRepository.getById(userIdTwo),
-    ),
+    rte.apS('user1', getUserById(userIdOne)),
+    rte.apS('user2', getUserById(userIdTwo)),
     rte.map(
       ({ user1, user2 }) =>
         capitalizedUserName(user1) + capitalizedUserName(user2),
