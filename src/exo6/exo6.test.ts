@@ -52,7 +52,7 @@ describe('exo6', () => {
     expect(result).toEqual(either.right('RobScott'));
   });
 
-  it.skip('should return the concatenation of the user name and the current year', async () => {
+  it('should return the concatenation of the user name and the current year', async () => {
     const timeservice = new Application.NodeTimeService.NodeTimeService();
 
     const usecase = getConcatenationOfUserNameAndCurrentYear({

@@ -2,11 +2,11 @@
 // Introduction to `ReaderTaskEither`
 
 import { ReaderTaskEither } from 'fp-ts/lib/ReaderTaskEither';
-import { unimplemented } from '../utils';
 import { Application } from './application';
 import { User } from './domain';
 import { pipe } from 'fp-ts/lib/function';
 import { rte } from '../readerTaskEither';
+import { taskEither } from 'fp-ts';
 
 // In real world applications you will mostly manipulate `ReaderTaskEither` aka
 // `rte` in the use-cases of the application.
@@ -117,4 +117,14 @@ export const getConcatenationOfUserNameAndCurrentYear: (args: {
   Dependencies,
   User.Repository.UserNotFoundError,
   string
-> = unimplemented;
+> = ({ userIdOne }) =>
+  pipe(
+    rte.Do,
+    rte.apS('user1', (deps: Dependencies) =>
+      deps.userRepository.getById(userIdOne),
+    ),
+    rte.apS('thisYear', ({ timeService }) =>
+      taskEither.of(timeService.thisYear()),
+    ),
+    rte.map(({ user1, thisYear }) => `${user1.name}${thisYear}`),
+  );
