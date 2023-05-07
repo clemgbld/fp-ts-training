@@ -4,6 +4,7 @@
 import { Either } from 'fp-ts/Either';
 import { ReaderTaskEither } from 'fp-ts/ReaderTaskEither';
 import { unimplemented } from '../utils';
+import { rte } from '../readerTaskEither';
 
 // Technically, a combinator is a pure function with no free variables in it,
 // ie. one that does not depend on any variable from its enclosing scope.
@@ -75,12 +76,12 @@ export const bindEitherK: <N extends string, A, E, B>(
   R,
   E,
   { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
-> = unimplemented;
+> = (name, f) => rte.bind(name, a => rte.fromEither(f(a)));
 
 // Write the implementation and type definition of `bindEitherKW`, the
 // "Widened" version of `bindEitherK`.
 
-export const bindEitherKW = unimplemented;
+export const bindEitherKW = unimplemented();
 
 // Write the implementations and type definitions of `apEitherK` and
 // `apEitherKW`.
@@ -89,9 +90,9 @@ export const bindEitherKW = unimplemented;
 // - remember that "widen" in the case of `Either` means the union of the
 //   possible error types
 
-export const apEitherK = unimplemented;
+export const apEitherK = unimplemented();
 
-export const apEitherKW = unimplemented;
+export const apEitherKW = unimplemented();
 
 // Write the implementations and type definitions of `bindReaderK` and
 // `bindReaderKW`.
@@ -100,6 +101,6 @@ export const apEitherKW = unimplemented;
 // - remember that "widen" in the case of `Reader` means the interesection of
 //   the possible environment types
 
-export const bindReaderK = unimplemented;
+export const bindReaderK = unimplemented();
 
-export const bindReaderKW = unimplemented;
+export const bindReaderKW = unimplemented();
