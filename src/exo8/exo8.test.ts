@@ -93,7 +93,7 @@ describe('exo8', () => {
   });
 
   describe('bindReaderK[W]', () => {
-    it.skip('should be usable in a do-notation rte pipeline', async () => {
+    it('should be usable in a do-notation rte pipeline', async () => {
       const pipeline = await pipe(
         rte.Do,
         rte.apS('foo', rte.of(42)),
@@ -105,7 +105,7 @@ describe('exo8', () => {
       expect(pipeline).toStrictEqual(expected);
     });
 
-    it.skip('should widen the error type when using the `W` variant', async () => {
+    it('should widen the error type when using the `W` variant', async () => {
       const pipeline = await pipe(
         rte.Do,
         rte.apS('foo', rte.of<{ a: string }, string, number>(42)),

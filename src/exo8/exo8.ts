@@ -3,8 +3,8 @@
 
 import { Either } from 'fp-ts/Either';
 import { ReaderTaskEither } from 'fp-ts/ReaderTaskEither';
-import { unimplemented } from '../utils';
 import { rte } from '../readerTaskEither';
+import { Reader } from 'fp-ts/lib/Reader';
 
 // Technically, a combinator is a pure function with no free variables in it,
 // ie. one that does not depend on any variable from its enclosing scope.
@@ -128,6 +128,24 @@ export const apEitherKW: <N extends string, A, E, B>(
 // - remember that "widen" in the case of `Reader` means the interesection of
 //   the possible environment types
 
-export const bindReaderK = unimplemented();
+export const bindReaderK: <N extends string, A, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Reader<E, B>,
+) => (
+  ma: ReaderTaskEither<E, never, A>,
+) => ReaderTaskEither<
+  E,
+  never,
+  { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
+> = (name, f) => rte.bind(name, a => rte.fromReader(f(a)));
 
-export const bindReaderKW = unimplemented();
+export const bindReaderKW: <N extends string, A, R2, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Reader<R2, B>,
+) => <R1, E>(
+  ma: ReaderTaskEither<R1, E, A>,
+) => ReaderTaskEither<
+  R1 & R2,
+  E,
+  { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
+> = (name, f) => rte.bindW(name, a => rte.fromReader(f(a)));
