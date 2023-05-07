@@ -81,7 +81,16 @@ export const bindEitherK: <N extends string, A, E, B>(
 // Write the implementation and type definition of `bindEitherKW`, the
 // "Widened" version of `bindEitherK`.
 
-export const bindEitherKW = unimplemented();
+export const bindEitherKW: <N extends string, A, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Either<E | B, B>,
+) => <R>(
+  ma: ReaderTaskEither<R, E | B, A>,
+) => ReaderTaskEither<
+  R,
+  E | B,
+  { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
+> = (name, f) => rte.bind(name, a => rte.fromEither(f(a)));
 
 // Write the implementations and type definitions of `apEitherK` and
 // `apEitherKW`.

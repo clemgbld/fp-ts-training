@@ -23,7 +23,7 @@ describe('exo8', () => {
       expect(pipeline).toStrictEqual(expected);
     });
 
-    it.skip('should be usable in a failing do-notation rte pipeline', async () => {
+    it('should be usable in a failing do-notation rte pipeline', async () => {
       const pipeline = await pipe(
         rte.Do,
         rte.apS('foo', rte.of<unknown, string, number>(42)),
@@ -38,7 +38,7 @@ describe('exo8', () => {
       expect(pipeline).toStrictEqual(expected);
     });
 
-    it.skip('should widen the error type when using the `W` variant', async () => {
+    it('should widen the error type when using the `W` variant', async () => {
       const pipeline = await pipe(
         rte.Do,
         rte.apS('foo', rte.of<unknown, string, number>(42)),
