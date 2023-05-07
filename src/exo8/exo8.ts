@@ -110,7 +110,16 @@ export const apEitherK: <N extends string, A, E, B>(
   { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
 > = (name, either) => rte.apS(name, rte.fromEither(either));
 
-export const apEitherKW = unimplemented();
+export const apEitherKW: <N extends string, A, E, B>(
+  name: Exclude<N, keyof A>,
+  either: Either<E | B, B>,
+) => <R>(
+  ma: ReaderTaskEither<R, E | B, A>,
+) => ReaderTaskEither<
+  R,
+  E | B,
+  { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
+> = (name, either) => rte.apS(name, rte.fromEither(either));
 
 // Write the implementations and type definitions of `bindReaderK` and
 // `bindReaderKW`.
