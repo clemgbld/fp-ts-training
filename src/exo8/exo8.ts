@@ -99,7 +99,16 @@ export const bindEitherKW: <N extends string, A, E, B>(
 // - remember that "widen" in the case of `Either` means the union of the
 //   possible error types
 
-export const apEitherK = unimplemented();
+export const apEitherK: <N extends string, A, E, B>(
+  name: Exclude<N, keyof A>,
+  either: Either<E, B>,
+) => <R>(
+  ma: ReaderTaskEither<R, E, A>,
+) => ReaderTaskEither<
+  R,
+  E,
+  { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B }
+> = (name, either) => rte.apS(name, rte.fromEither(either));
 
 export const apEitherKW = unimplemented();
 

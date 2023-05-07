@@ -53,7 +53,7 @@ describe('exo8', () => {
   });
 
   describe('apEitherK[W]', () => {
-    it.skip('should be usable in a happy path do-notation rte pipeline', async () => {
+    it('should be usable in a happy path do-notation rte pipeline', async () => {
       const pipeline = await pipe(
         rte.Do,
         rte.apS('foo', rte.of(42)),
@@ -65,7 +65,7 @@ describe('exo8', () => {
       expect(pipeline).toStrictEqual(expected);
     });
 
-    it.skip('should be usable in a failing do-notation rte pipeline', async () => {
+    it('should be usable in a failing do-notation rte pipeline', async () => {
       const pipeline = await pipe(
         rte.Do,
         rte.apS('foo', rte.of<unknown, string, number>(42)),
